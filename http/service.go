@@ -37,12 +37,12 @@ func (s *Service) routes() {
 	s.m.Post("/author", s.HandleAddAuthor())
 }
 
-func (s *Service) ISBN(w http.ResponseWriter, r *http.Request) (isbn.ISBN, error) {
+func (s *Service) getISBN(w http.ResponseWriter, r *http.Request) (isbn.ISBN, error) {
 	id := cv5.URLParam(r, "isbn")
 	return isbn.Parse(id)
 }
 
-func (s *Service) UUID(w http.ResponseWriter, r *http.Request) (uuid.UUID, error) {
+func (s *Service) getUUID(w http.ResponseWriter, r *http.Request) (uuid.UUID, error) {
 	id := cv5.URLParam(r, "uuid")
 	return uuid.Parse(id)
 }

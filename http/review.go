@@ -8,18 +8,18 @@ import (
 
 func (s *Service) HandleGetBookReviews() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		id, _ := s.ISBN(w, r)
-		s.rr.ListBookReviews(id)
+		id, _ := s.getISBN(w, r)
+		s.rr.List(id)
 	}
 }
 
 func (s *Service) HandleAddBookReview() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		id, _ := s.ISBN(w, r)
+		id, _ := s.getISBN(w, r)
 		var review catalogue.Review
 		review.Book = id
-		s.rr.AddBookReview(review)
+		s.rr.Insert(review)
 
-		s.rr.AddBookReview(review)
+		s.rr.Insert(review)
 	}
 }

@@ -1,16 +1,18 @@
 package psql
 
 import (
+	"github.com/jackc/pgx/v4"
 	catalogue "go.topheruk.bookcatalogue"
 	"go.topheruk.bookcatalogue/pkg/isbn"
 )
 
 type BookRepository struct {
+	c  *pgx.Conn
 	db map[isbn.ISBN]catalogue.Book
 }
 
-func NewBookRepository() *BookRepository {
-	return &BookRepository{db: make(map[isbn.ISBN]catalogue.Book)}
+func NewBookRepository(conn *pgx.Conn) *BookRepository {
+	return &BookRepository{c: conn}
 }
 
 func (r BookRepository) ListBooks() ([]catalogue.Book, error) { return nil, catalogue.ErrTodo }

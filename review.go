@@ -17,6 +17,6 @@ type Review struct {
 }
 
 type ReviewRepository interface {
-	AddBookReview(Review) error
-	ListBookReviews(isbn.ISBN) ([]Review, error)
+	Insert(Review) error
+	List(isbn.ISBN) ([]Review, error)
 }

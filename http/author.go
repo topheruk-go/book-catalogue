@@ -8,20 +8,20 @@ import (
 
 func (s *Service) HandleListAuthors() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		s.sr.ListAuthors()
+		s.sr.List()
 	}
 }
 
 func (s *Service) HandleAddAuthor() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var author catalogue.Author
-		s.sr.AddAuthor(author)
+		s.sr.Insert(author)
 	}
 }
 
 func (s *Service) HandleGetAuthor() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		id, _ := s.UUID(w, r)
-		s.sr.FindAuthor(id)
+		id, _ := s.getUUID(w, r)
+		s.sr.Find(id)
 	}
 }

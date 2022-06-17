@@ -14,7 +14,7 @@ type Book struct {
 }
 
 type BookRepository interface {
-	ListBooks() ([]Book, error)
-	FindBook(id isbn.ISBN) (*Book, error)
-	AddBook(book Book) error
+	List() ([]Book, error)
+	Find(id isbn.ISBN) (*Book, error)
+	Add(book Book) error
 }

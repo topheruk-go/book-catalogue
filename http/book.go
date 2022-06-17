@@ -9,15 +9,15 @@ import (
 // GET /book/
 func (s *Service) HandleListBooks() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		s.br.ListBooks()
+		s.br.List()
 	}
 }
 
 // GET /book/{isbn}
 func (s *Service) HandleGetBook() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		id, _ := s.ISBN(w, r)
-		s.br.FindBook(id)
+		id, _ := s.getISBN(w, r)
+		s.br.Find(id)
 	}
 }
 
@@ -26,6 +26,6 @@ func (s *Service) HandleAddBook() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var book catalogue.Book
 
-		s.br.AddBook(book)
+		s.br.Add(book)
 	}
 }

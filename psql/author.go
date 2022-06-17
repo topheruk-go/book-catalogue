@@ -3,6 +3,7 @@ package psql
 import (
 	"github.com/google/uuid"
 	catalogue "go.topheruk.bookcatalogue"
+	// "github.com/jackc/pgx/v4"
 )
 
 type AuthorRepository struct {

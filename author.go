@@ -12,7 +12,7 @@ type Author struct {
 }
 
 type AuthorRepository interface {
-	ListAuthors() ([]Author, error)
-	AddAuthor(Author) error
-	FindAuthor(uuid.UUID) (*Author, error)
+	List() ([]Author, error)
+	Insert(Author) error
+	Find(uuid.UUID) (*Author, error)
 }
