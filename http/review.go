@@ -4,22 +4,56 @@ import (
 	"net/http"
 
 	catalogue "go.topheruk.bookcatalogue"
+	"go.topheruk.bookcatalogue/pkg/isbn"
 )
 
+// GET /book/{isbn}/review
 func (s *Service) HandleGetBookReviews() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		id, _ := s.getISBN(w, r)
-		s.rr.List(id)
+		id, err := s.parseISBN(w, r)
+		if err != nil {
+			s.respond(w, r, err, http.StatusBadRequest)
+			return
+		}
+
+		reveiws, err := s.rr.List(id)
+		if err != nil {
+			s.respond(w, r, err, http.StatusNotFound)
+			return
+		}
+
+		s.respond(w, r, reveiws, http.StatusOK)
 	}
 }
 
+// POST /book/{isbn}/review
 func (s *Service) HandleAddBookReview() http.HandlerFunc {
-	return func(w http.ResponseWriter, r *http.Request) {
-		id, _ := s.getISBN(w, r)
-		var review catalogue.Review
-		review.Book = id
-		s.rr.Insert(review)
+	type dto struct {
+		Book  isbn.ISBN `json:"book"`
+		Name  string    `json:"name"`
+		Score int       `json:"score"`
+		Text  string    `json:"text"`
+	}
 
-		s.rr.Insert(review)
+	return func(w http.ResponseWriter, r *http.Request) {
+		id, err := s.parseISBN(w, r)
+		if err != nil {
+			s.respond(w, r, err, http.StatusBadRequest)
+			return
+		}
+
+		var v dto
+		if err := s.decode(w, r, &v); err != nil {
+			s.respond(w, r, err, http.StatusBadRequest)
+			return
+		}
+
+		review := catalogue.NewReview(id, v.Name, v.Text, v.Score)
+		if err := s.rr.Insert(review); err != nil {
+			s.respond(w, r, err, http.StatusInternalServerError)
+			return
+		}
+
+		s.created(w, r, review.ID.String())
 	}
 }

@@ -11,12 +11,16 @@ type Review struct {
 	ID        uuid.UUID `json:"id"`
 	Book      isbn.ISBN `json:"book"`
 	Name      string    `json:"name"`
-	Score     int       `json:"score"`
 	Text      string    `json:"text"`
+	Score     int       `json:"score"`
 	CreatedAt time.Time `json:"created_at"`
 }
 
+func NewReview(book isbn.ISBN, name, text string, score int) *Review {
+	return &Review{uuid.New(), book, name, text, score, time.Now()}
+}
+
 type ReviewRepository interface {
-	Insert(Review) error
+	Insert(*Review) error
 	List(isbn.ISBN) ([]Review, error)
 }

@@ -1,12 +1,14 @@
 package isbn
 
 import (
+	"encoding/json"
+	"strings"
 	"testing"
 
 	"gotest.tools/v3/assert"
 )
 
-func TestIsbnLength(t *testing.T) {
+func TestIsbnValidation(t *testing.T) {
 	tt := []struct {
 		desc string
 		data string
@@ -34,6 +36,14 @@ func TestIsbnLength(t *testing.T) {
 	}
 }
 
-func TestIsbn10(t *testing.T) {
+func TestEncodingJSON(t *testing.T) {
+	data := `["9780716703440","0716703440"]`
 
+	var isbns []ISBN
+	err := json.NewDecoder(strings.NewReader(data)).Decode(&isbns)
+	assert.NilError(t, err)
+
+	var sb strings.Builder
+	json.NewEncoder(&sb).Encode(&isbns[1])
+	// assert.Equal(t, sb.String(), "9780716703440")
 }

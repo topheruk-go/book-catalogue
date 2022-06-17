@@ -14,10 +14,10 @@ func NewReviewRepository() *ReviewRepository {
 	return &ReviewRepository{db: make(map[uuid.UUID]catalogue.Review)}
 }
 
-func (db *ReviewRepository) ListBookReviews(isbn isbn.ISBN) ([]catalogue.Review, error) {
+func (db *ReviewRepository) List(isbn isbn.ISBN) ([]catalogue.Review, error) {
 	return nil, catalogue.ErrTodo
 }
 
-func (db *ReviewRepository) AddBookReview(review catalogue.Review) ([]catalogue.Review, error) {
+func (db *ReviewRepository) Insert(review catalogue.Review) ([]catalogue.Review, error) {
 	return nil, catalogue.ErrTodo
 }

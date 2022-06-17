@@ -13,6 +13,6 @@ type Author struct {
 
 type AuthorRepository interface {
 	List() ([]Author, error)
-	Insert(Author) error
+	Insert(*Author) error
 	Find(uuid.UUID) (*Author, error)
 }

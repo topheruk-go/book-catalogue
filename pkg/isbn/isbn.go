@@ -5,8 +5,6 @@ import (
 	"strings"
 )
 
-// type ISBN string //temp
-
 type ISBN [13]byte
 
 func (isbn ISBN) String() string {
@@ -28,8 +26,10 @@ func (err invalidLengthError) Error() string {
 	return fmt.Sprintf("invalid ISBN length %d", err.len)
 }
 
-func Parse(s string) (ISBN, error) {
-	var isbn ISBN
+// Parse s into an ISBN 13 or returns an error. Supports the forms
+// ISBN 13 XXXXXXXXXXXXX (XXX-X-XXXX-XXXX-X) and
+// ISBN 10 XXXXXXXXXX (X-XXXX-XXXX-X)
+func Parse(s string) (isbn ISBN, err error) {
 	switch len(s) {
 	case 13 + 4: //XXX-X-XXXX-XXXX-X
 	case 10: //XXXXXXXXXX
@@ -46,6 +46,9 @@ func Parse(s string) (ISBN, error) {
 	// s is now in the format XXX-X-XXXX-XXXX-X
 	return check13(strings.ReplaceAll(s, "-", ""))
 }
+
+// ParseBytes is like Parse, except it parses a byte slice instead of a string.
+func ParseBytes(b []byte) (isbn ISBN, err error) { return isbn, ErrTodo }
 
 func check13(s string) (isbn ISBN, err error) {
 	var acc [2]int

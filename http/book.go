@@ -4,6 +4,7 @@ import (
 	"net/http"
 
 	catalogue "go.topheruk.bookcatalogue"
+	"go.topheruk.bookcatalogue/pkg/isbn"
 )
 
 // GET /book/
@@ -16,16 +17,31 @@ func (s *Service) HandleListBooks() http.HandlerFunc {
 // GET /book/{isbn}
 func (s *Service) HandleGetBook() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		id, _ := s.getISBN(w, r)
+		id, _ := s.parseISBN(w, r)
 		s.br.Find(id)
 	}
 }
 
 // POST /book
 func (s *Service) HandleAddBook() http.HandlerFunc {
+	type dto struct {
+		ID     isbn.ISBN `json:"id"`
+		Title  string    `json:"title"`
+		Author string    `json:"author"`
+	}
 	return func(w http.ResponseWriter, r *http.Request) {
-		var book catalogue.Book
+		var v dto
+		if err := s.decode(w, r, &v); err != nil {
+			s.respond(w, r, err, http.StatusBadRequest)
+			return
+		}
 
-		s.br.Add(book)
+		book := catalogue.NewBook(v.ID, v.Title, v.Author)
+		if err := s.br.Insert(book); err != nil {
+			s.respond(w, r, err, http.StatusInternalServerError)
+			return
+		}
+
+		s.created(w, r, book.ID.String())
 	}
 }

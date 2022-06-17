@@ -15,10 +15,10 @@ func NewBookRepository(conn *pgx.Conn) *BookRepository {
 	return &BookRepository{c: conn}
 }
 
-func (r BookRepository) ListBooks() ([]catalogue.Book, error) { return nil, catalogue.ErrTodo }
+func (r BookRepository) List() ([]catalogue.Book, error) { return nil, catalogue.ErrTodo }
 
-func (r BookRepository) FindBook(id isbn.ISBN) (*catalogue.Book, error) {
+func (r BookRepository) Find(id isbn.ISBN) (*catalogue.Book, error) {
 	return nil, catalogue.ErrTodo
 }
 
-func (r *BookRepository) AddBook(book catalogue.Book) error { return catalogue.ErrTodo }
+func (r *BookRepository) Insert(book catalogue.Book) error { return catalogue.ErrTodo }

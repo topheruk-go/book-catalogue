@@ -14,10 +14,10 @@ func NewAuthorRepository() *AuthorRepository {
 	return &AuthorRepository{db: make(map[uuid.UUID]catalogue.Author)}
 }
 
-func (r AuthorRepository) ListAuthors() ([]catalogue.Author, error) { return nil, catalogue.ErrTodo }
+func (r AuthorRepository) List() ([]catalogue.Author, error) { return nil, catalogue.ErrTodo }
 
-func (r AuthorRepository) FindAuthor(id uuid.UUID) (*catalogue.Author, error) {
+func (r AuthorRepository) Find(id uuid.UUID) (*catalogue.Author, error) {
 	return nil, catalogue.ErrTodo
 }
 
-func (r *AuthorRepository) AddAuthor(author catalogue.Author) error { return catalogue.ErrTodo }
+func (r *AuthorRepository) Insert(author catalogue.Author) error { return catalogue.ErrTodo }
