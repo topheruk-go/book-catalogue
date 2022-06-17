@@ -2,15 +2,12 @@ package psql
 
 import (
 	"context"
-	"os"
 
 	"github.com/jackc/pgx/v4"
 	"github.com/topheruk-go/util/sql/pg"
 	bc "go.topheruk.bookcatalogue"
 	"go.topheruk.bookcatalogue/pkg/isbn"
 )
-
-var psqlConn = os.ExpandEnv("host=${POSTGRES_HOSTNAME} port=${DB_PORT} user=${POSTGRES_USER} password=${POSTGRES_PASSWORD} dbname=${POSTGRES_DB} sslmode=disable")
 
 type Repo struct {
 	db *pgx.Conn

@@ -3,8 +3,8 @@ package http
 import (
 	"net/http"
 
+	"github.com/topheruk-go/isbn"
 	catalogue "go.topheruk.bookcatalogue"
-	"go.topheruk.bookcatalogue/pkg/isbn"
 )
 
 // GET /book/

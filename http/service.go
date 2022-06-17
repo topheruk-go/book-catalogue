@@ -5,9 +5,9 @@ import (
 
 	cv5 "github.com/go-chi/chi/v5"
 	"github.com/google/uuid"
+	"github.com/topheruk-go/isbn"
 	ptth "github.com/topheruk-go/util/http"
 	bc "go.topheruk.bookcatalogue"
-	"go.topheruk.bookcatalogue/pkg/isbn"
 )
 
 type Service struct {

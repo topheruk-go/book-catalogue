@@ -3,7 +3,7 @@ package bookcatalogue
 import (
 	"time"
 
-	"go.topheruk.bookcatalogue/pkg/isbn"
+	"github.com/topheruk-go/isbn"
 )
 
 type Book struct {
