@@ -42,6 +42,6 @@ func (s *Service) HandleAddBook() http.HandlerFunc {
 			return
 		}
 
-		s.created(w, r, book.ID.String())
+		s.created(w, r, book.Isbn.String())
 	}
 }

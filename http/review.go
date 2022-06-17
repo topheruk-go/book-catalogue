@@ -16,7 +16,7 @@ func (s *Service) HandleGetBookReviews() http.HandlerFunc {
 			return
 		}
 
-		reveiws, err := s.rr.List(id)
+		reveiws, err := s.rr.ListByIndex(id)
 		if err != nil {
 			s.respond(w, r, err, http.StatusNotFound)
 			return

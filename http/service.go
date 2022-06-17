@@ -6,18 +6,18 @@ import (
 	cv5 "github.com/go-chi/chi/v5"
 	"github.com/google/uuid"
 	ptth "github.com/topheruk-go/util/http"
-	catalogue "go.topheruk.bookcatalogue"
+	bc "go.topheruk.bookcatalogue"
 	"go.topheruk.bookcatalogue/pkg/isbn"
 )
 
 type Service struct {
-	br catalogue.BookRepository
-	rr catalogue.ReviewRepository
-	ar catalogue.AuthorRepository
+	br bc.BookRepository
+	rr bc.ReviewRepository
+	ar bc.AuthorRepository
 	m  *cv5.Mux
 }
 
-func NewService(br catalogue.BookRepository, rr catalogue.ReviewRepository, ar catalogue.AuthorRepository) *Service {
+func NewService(br bc.BookRepository, rr bc.ReviewRepository, ar bc.AuthorRepository) *Service {
 	s := &Service{br, rr, ar, cv5.NewMux()}
 	s.routes()
 	return s

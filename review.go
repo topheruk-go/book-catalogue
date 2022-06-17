@@ -22,5 +22,5 @@ func NewReview(book isbn.ISBN, name, text string, score int) *Review {
 
 type ReviewRepository interface {
 	Insert(*Review) error
-	List(isbn.ISBN) ([]Review, error)
+	ListByIndex(isbn.ISBN) ([]Review, error)
 }

@@ -7,7 +7,7 @@ import (
 )
 
 type Book struct {
-	ID        isbn.ISBN `json:"id"`
+	Isbn      isbn.ISBN `json:"id"`
 	Title     string    `json:"title"`
 	Author    string    `json:"author"`
 	CreatedAt time.Time `json:"created_at"`

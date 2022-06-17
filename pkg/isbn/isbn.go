@@ -20,12 +20,6 @@ var (
 	ErrFormat = fmt.Errorf("invalid ISBN format")
 )
 
-type invalidLengthError struct{ len int }
-
-func (err invalidLengthError) Error() string {
-	return fmt.Sprintf("invalid ISBN length %d", err.len)
-}
-
 // Parse s into an ISBN 13 or returns an error. Supports the forms
 // ISBN 13 XXXXXXXXXXXXX (XXX-X-XXXX-XXXX-X) and
 // ISBN 10 XXXXXXXXXX (X-XXXX-XXXX-X)
