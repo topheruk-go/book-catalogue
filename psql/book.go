@@ -3,7 +3,8 @@ package psql
 import (
 	"github.com/jackc/pgx/v4"
 	catalogue "go.topheruk.bookcatalogue"
-	"go.topheruk.bookcatalogue/pkg/isbn"
+
+	"github.com/topheruk-go/isbn"
 )
 
 type BookRepository struct {

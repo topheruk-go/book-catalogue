@@ -4,9 +4,10 @@ import (
 	"context"
 
 	"github.com/jackc/pgx/v4"
+	"github.com/topheruk-go/isbn"
 	"github.com/topheruk-go/util/sql/pg"
+
 	bc "go.topheruk.bookcatalogue"
-	"go.topheruk.bookcatalogue/pkg/isbn"
 )
 
 type Repo struct {

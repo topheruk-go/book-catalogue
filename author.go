@@ -2,7 +2,7 @@ package bookcatalogue
 
 import (
 	"github.com/google/uuid"
-	"go.topheruk.bookcatalogue/pkg/isbn"
+	"github.com/topheruk-go/isbn"
 )
 
 type Author struct {

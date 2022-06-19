@@ -4,7 +4,7 @@ import (
 	"time"
 
 	"github.com/google/uuid"
-	"go.topheruk.bookcatalogue/pkg/isbn"
+	"github.com/topheruk-go/isbn"
 )
 
 type Review struct {

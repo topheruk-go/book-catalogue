@@ -3,7 +3,8 @@ package psql
 import (
 	"github.com/google/uuid"
 	catalogue "go.topheruk.bookcatalogue"
-	"go.topheruk.bookcatalogue/pkg/isbn"
+
+	"github.com/topheruk-go/isbn"
 )
 
 type ReviewRepository struct {
