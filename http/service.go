@@ -23,7 +23,7 @@ func NewService(br bc.BookRepository, rr bc.ReviewRepository, ar bc.AuthorReposi
 	return s
 }
 
-func (s *Service) ServeHTTP(w http.ResponseWriter, r *http.Request) { s.m.ServeHTTP(w, r) }
+func (s Service) ServeHTTP(w http.ResponseWriter, r *http.Request) { s.m.ServeHTTP(w, r) }
 
 func (s *Service) parseISBN(w http.ResponseWriter, r *http.Request) (isbn.ISBN, error) {
 	id := cv5.URLParam(r, "isbn")
